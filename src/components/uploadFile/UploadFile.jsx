@@ -28,8 +28,9 @@ const UploadFile = () => {
   return (
     <div className="upload-file-container">
       <h3>Upload CSV File</h3>
-      <label htmlFor="file-uploader">Select</label>
-      <input type="file" onChange={handleFileChange} />
+      <label htmlFor="file-uploader">
+        <input placeholder="select file" type="file" onChange={handleFileChange} />
+      </label>
       <button className="upload-button" onClick={handleFileUpload}>
         Upload
       </button>

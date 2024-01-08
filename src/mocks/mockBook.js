@@ -8,8 +8,8 @@ export const mockBook = {
     about:
       "American novelist and short story writer, widely regarded as one of the greatest American writers of the 20th century.",
   },
-  rating: 4.5,
-  price: 19.99,
+  rating: 4,
+  price: 20,
   moreDetails: {
     publisher: "Scribner",
     firstPublished: new Date("1925-04-10"),
