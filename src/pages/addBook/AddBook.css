@@ -1,0 +1,57 @@
+.add-book-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .add-book-form {
+    display: grid;
+    grid-gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #495057;
+  }
+  
+  input,
+  textarea,
+  select,
+  button {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  select,
+  button {
+    cursor: pointer;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

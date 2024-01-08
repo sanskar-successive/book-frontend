@@ -1,0 +1,31 @@
+.PaginationContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+  }
+  
+  .PaginationSelect {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .PaginationButton {
+    background-color: #fff;
+    color: #333;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .PaginationButton:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .ActiveButton {
+    background-color: #ddd;
+  }
+  
