@@ -7,7 +7,7 @@ const Header = () => {
     <header role="header" className="sticky-header">
       <div className="header-content">
         <div>
-          <Search />
+          <Search data-testid="search-component" />
         </div>
       </div>
     </header>

@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import './Filter.css'
+import "./Filter.css";
 
 const categories = [
   "fiction",
@@ -136,83 +136,6 @@ const Filter = () => {
     },
   });
 
-  // return (
-  //   <div>
-  //     <div>
-  //       <p>Price</p>
-  //       <input
-  //         value={state.price.from}
-  //         onChange={handlePriceChange}
-  //         name="from"
-  //         type="number"
-  //         placeholder="Min"
-  //       />
-  //       <input
-  //         value={state.price.to}
-  //         onChange={handlePriceChange}
-  //         name="to"
-  //         type="number"
-  //         placeholder="Max"
-  //       />
-  //     </div>
-  //     <div>
-  //       <p>Rating</p>
-  //       <label>
-  //         3 and above
-  //         <input
-  //           checked={state.rating.aboveThree}
-  //           onChange={handleRatingChange}
-  //           name="aboveThree"
-  //           type="checkbox"
-  //         />
-  //       </label>
-  //       <label>
-  //         4 and above
-  //         <input
-  //           checked={state.rating.aboveFour}
-  //           onChange={handleRatingChange}
-  //           name="aboveFour"
-  //           type="checkbox"
-  //         />
-  //       </label>
-  //     </div>
-  //     <div>
-  //       <p>Category</p>
-  //       {categories.map((item) => {
-  //         return (
-  //           <label htmlFor={item}>
-  //             {item}
-  //             <input
-  //               checked={state.category.item}
-  //               onChange={handleCategoryChange}
-  //               name={item}
-  //               type="checkbox"
-  //             />
-  //           </label>
-  //         );
-  //       })}
-  //     </div>
-  //     <div>
-  //       <p>Language</p>
-  //       {languages.map((item) => {
-  //         return (
-  //           <label htmlFor={item}>
-  //             {item}
-  //             <input
-  //               checked={state.language.item}
-  //               onChange={handleLanguageChange}
-  //               name={item}
-  //               type="checkbox"
-  //             />
-  //           </label>
-  //         );
-  //       })}
-  //     </div>
-
-  //     <button onClick={handleFilters}>Apply</button>
-  //   </div>
-  // );
-
   return (
     <div className="filterContainer">
       <div>
@@ -263,6 +186,7 @@ const Filter = () => {
           <label key={item} htmlFor={item} className="filterLabel">
             {item}
             <input
+              role="category-checkbox"
               className="filterCheckbox"
               checked={state.category[item]}
               onChange={handleCategoryChange}
@@ -278,6 +202,7 @@ const Filter = () => {
           <label key={item} htmlFor={item} className="filterLabel">
             {item}
             <input
+              role="language-checkbox"
               className="filterCheckbox"
               checked={state.language[item]}
               onChange={handleLanguageChange}

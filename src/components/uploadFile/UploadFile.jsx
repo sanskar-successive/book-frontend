@@ -11,23 +11,24 @@ const UploadFile = () => {
 
   const handleFileUpload = async () => {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
     try {
-      await axios.post('http://localhost:5000/api/bulk-upload', formData, {
+      await axios.post("http://localhost:5000/api/bulk-upload", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
-      console.log('File uploaded successfully.');
+      console.log("File uploaded successfully.");
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error("Error uploading file:", error);
     }
   };
 
   return (
     <div className="upload-file-container">
       <h3>Upload CSV File</h3>
+      <label htmlFor="file-uploader">Select</label>
       <input type="file" onChange={handleFileChange} />
       <button className="upload-button" onClick={handleFileUpload}>
         Upload

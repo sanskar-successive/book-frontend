@@ -1,4 +1,5 @@
 export const mockBook = {
+  _id : "6599476e5578103245b8db40",
   title: "The Great Gatsby",
   coverImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=46",
   category: "fiction",

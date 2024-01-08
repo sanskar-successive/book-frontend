@@ -28,5 +28,21 @@ export const handlers = [
     const url = new URL(request.url);
     const query = url.searchParams
     return HttpResponse.json(mockBookList);
-  })
+  }),
+
+  http.post('http://localhost:5000/api/bulk-upload', async ({ request }) => {
+    const data = await request.formData()
+    const file = data.get('file')
+ 
+    if (!file) {
+      return new HttpResponse('Missing document')
+    }
+ 
+    if (!(file instanceof File)) {
+      return new HttpResponse('Uploaded document is not a File')
+    }
+ 
+    return HttpResponse.json("file uploaded")
+  }),
+
 ];

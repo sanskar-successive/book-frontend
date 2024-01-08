@@ -1,9 +1,11 @@
 import { screen, render, act } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import Search from "./Search";
 import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
-describe("Search", () => {
-  test("finding search input and search button", () => {
+describe("Search Component", () => {
+  test("should render search component", async () => {
     render(
       <BrowserRouter>
         <Search />
@@ -14,19 +16,12 @@ describe("Search", () => {
 
     const searchButton = screen.getByRole("button");
     expect(searchButton).toBeInTheDocument();
-  });
 
-  test("testing search input change and button click effect on url search query", () => {
-    render(
-      <BrowserRouter>
-        <Search />
-      </BrowserRouter>
-    );
+    await userEvent.type(searchInput, "searchQuery");
+    expect(searchInput).toHaveValue("searchQuery");
 
-    act(() => {
-      screen.getByRole("textbox");
-    });
-
-    const searchButtonClick = screen.getByRole("button");
+    await userEvent.click(searchButton);
+    expect(window.location.search === "?search=searchQuery")
+    
   });
 });

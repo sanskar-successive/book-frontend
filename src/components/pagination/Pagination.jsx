@@ -45,38 +45,6 @@ const Pagination = ({ total = 100 }) => {
     setQueryParams(queryParams);
   }, [currentPage]);
 
-  // return (
-  //   <>
-  //     <select value={limit} onChange={(e)=>setLimit(e.target.value)}>
-  //       {limitOptions.map((item)=>{
-  //         return (
-  //           <option value={item}>{item}</option>
-  //         )
-  //       })}
-  //     </select>
-
-  //     {currentPage > 1 && currentPage <= totalPages ? (
-  //       <button onClick={() => setCurrentPage(currentPage - 1)}>prev</button>
-  //     ) : null}
-
-  //     {totalPages > 0 &&
-  //       [...Array(totalPages)].map((item, index) => {
-  //         return (
-  //           <button onClick={() => handlePageButtonClick(index + 1)}>
-  //             {index + 1}
-  //           </button>
-  //         );
-  //       })}
-
-  //     {currentPage >= 1 && currentPage < totalPages ? (
-  //       <button onClick={() => setCurrentPage(currentPage + 1)}>next</button>
-  //     ) : null}
-
-  //     {currentPage}
-  //   </>
-  // );
-
-  // Apply the CSS classes in your JSX
   return (
     <div className="PaginationContainer">
       <select
@@ -103,6 +71,7 @@ const Pagination = ({ total = 100 }) => {
       {totalPages > 0 &&
         [...Array(totalPages)].map((_, index) => (
           <button
+            role="page-change-button"
             key={index}
             className={`PaginationButton ${
               currentPage === index + 1 ? "ActiveButton" : ""

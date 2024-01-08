@@ -1,5 +1,7 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 import Sidebar from "./Sidebar";
 
 describe("Sidebar Component", () => {
@@ -28,48 +30,22 @@ describe("Sidebar Component", () => {
     const bulkUploadsLink = screen.getByRole("link", { name: "Bulk Uploads" });
     expect(bulkUploadsLink).toBeInTheDocument();
   }),
-    test("navigates to the correct route when a link is clicked", () => {
+    test("navigates to the correct route when a link is clicked", async () => {
       render(
         <BrowserRouter>
           <Sidebar />
         </BrowserRouter>
       );
-
-      act(() => {
-        screen
-          .getByRole("link", {
-            name: "Book List",
-          })
-          .click();
-      });
+      await userEvent.click(screen.getByRole("link", { name: "Book List" }));
       expect(window.location.pathname).toBe("/");
 
-      act(() => {
-        screen
-          .getByRole("link", {
-            name: "Add Book",
-          })
-          .click();
-      });
+      await userEvent.click(screen.getByRole("link", {name: "Add Book"}));
       expect(window.location.pathname).toBe("/add-book");
 
-      act(() => {
-        screen
-          .getByRole("link", {
-            name: "Upload File",
-          })
-          .click();
-      });
-      expect(window.location.pathname).toBe("/upload-file");
+      await userEvent.click(screen.getByRole('link', {name : "Upload File"}))
+      expect(window.location.pathname).toBe("/upload-file")
 
-      act(() => {
-        screen
-          .getByRole("link", {
-            name: "Bulk Uploads",
-          })
-          .click();
-      });
+      await userEvent.click(screen.getByRole('link', {name : "Bulk Uploads"}))
       expect(window.location.pathname).toBe("/bulk-uploads");
-
     });
 });

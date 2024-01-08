@@ -4,7 +4,6 @@ import { describe, expect, test } from "vitest";
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 
-
 describe("Layout Page", () => {
   test("should renders Layout page", async () => {
     render(

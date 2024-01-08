@@ -38,21 +38,6 @@ const Sort = () => {
     setQueryParams(queryParams);
   }, [sortBy]);
 
-  // return (
-  //   <div>
-
-  //     {sortOptions.map((item) => {
-  //       return (
-  //         <button key={item} value={item} onClick={handleSortBy}>
-  //           {item}
-  //         </button>
-  //       );
-  //     })}
-
-  //     {sortBy}
-  //   </div>
-  // );
-
   return (
     <div className="sortContainer">
       <span className="sortLabel">Sort By:</span>

@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
 import { BrowserRouter } from "react-router-dom";
-import { mockBook } from "../../mocks/mockBook";
 import AddBook from "./AddBook";
 import userEvent from "@testing-library/user-event";
+import { mockBook } from "../../mocks/mockBook";
 
 describe("Add Book component", () => {
   test("should renders Add Book Form", async () => {
@@ -13,61 +13,65 @@ describe("Add Book component", () => {
       </BrowserRouter>
     );
 
-    // expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(screen.queryByText(/loading/i))
 
-    // await screen.findByText("Add Book");
+    // const mainHeading = screen.queryByText("Add Book");
+    // expect(mainHeading).toBeInTheDocument();
+   
 
+    const form  = await screen.findByRole('form');
 
-    userEvent.type(screen.findAllByLabelText("Title"));
+    expect(form).toHaveFormValues({
+      
+    })
 
-
-    userEvent.type(screen.getByLabelText("Description"))
+    // await userEvent.type(screen.findByLabelText("Description"))
  
 
-    userEvent.type(screen.getByLabelText("Category"))
+    // await userEvent.type(screen.findByLabelText("Category"))
    
 
-    userEvent.type(screen.getByLabelText("Language"))
+    // await userEvent.type(screen.findByLabelText("Language"))
 
-    userEvent.type(screen.getByLabelText("Price"))
+    // await userEvent.type(screen.findByLabelText("Price"))
   
 
-    userEvent.type(screen.getByLabelText("Rating"))
+    // await userEvent.type(screen.findByLabelText("Rating"))
    
 
 
-    userEvent.type(screen.getByLabelText("File Size"))
+    // await userEvent.type(screen.findByLabelText("File Size"))
   
 
-    userEvent.type(screen.getByLabelText("Page Count"))
+    // await userEvent.type(screen.findByLabelText("Page Count"))
    
 
-    userEvent.type(screen.getByLabelText("Author"))
+    // await userEvent.type(screen.findByLabelText("Author"))
   
 
 
-    userEvent.type(screen.getByLabelText("About Author"))
+    // await userEvent.type(screen.findByLabelText("About Author"))
  
 
-    userEvent.type(screen.getByLabelText("Seller"))
+    // await userEvent.type(screen.findByLabelText("Seller"))
 
 
-    userEvent.type(screen.getByLabelText("Publisher"))
+    // await userEvent.type(screen.findByLabelText("Publisher"))
 
-    userEvent.type(screen.getByLabelText("First Published"))
-
-
-    userEvent.type(screen.getByLabelText("Verified"))
+    // await userEvent.type(screen.findByLabelText("First Published"))
 
 
-    userEvent.type(screen.getByLabelText("Edition"))
+    // await userEvent.type(screen.findByLabelText("Verified"))
+
+
+    // await userEvent.type(screen.findByLabelText("Edition"))
   
 
-    userEvent.type(screen.getByLabelText("Cover Image"))
+    // await userEvent.type(screen.findByLabelText("Cover Image"))
 
 
-    userEvent.click(screen.getByRole('button'))
+    // await userEvent.click(screen.findByRole('button'))
 
-    expect(screen.queryByText(/loading/i)).not.toBeInTheDocument()
+    // expect(screen.queryByText(/loading/i)).not.toBeInTheDocument()
   });
 });

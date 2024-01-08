@@ -1,22 +1,28 @@
-// import { render, screen, act } from "@testing-library/react";
-// import { BrowserRouter } from "react-router-dom";
-// import UploadFile from "./UploadFile";
-// import axios from "axios";
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
+import { BrowserRouter } from "react-router-dom";
+import UploadFile from "./UploadFile";
+import userEvent from "@testing-library/user-event";
 
-// describe("render file upload component", () => {
-//   render(
-//     <BrowserRouter>
-//       <UploadFile />
-//     </BrowserRouter>
-//   );
+const mockFile = new File(["file content"], "test.csv", { type: "text/csv" });
 
-//   test("upload", () => {
-//     const headingText = screen.getByRole('heading');
-//     expect(headingText).toBeInTheDocument();
+describe("upload file component", () => {
+  test("should render upload file component", async () => {
+    render(
+        <BrowserRouter>
+          <UploadFile />
+        </BrowserRouter>
+      );
+    const headingText = screen.getByRole('heading');
+    expect(headingText).toBeInTheDocument();
 
-//     const fileInput = screen.getByRole('button', {name : })
+    const fileInput = screen.queryByLabelText("Select")
 
-//     const uploadButton = screen.getByRole("button", {name : "Upload"});
-//     expect(uploadButton).toBeInTheDocument();
-//   });
-// });
+    await userEvent.upload(fileInput, mockFile);
+    expect(fileInput.files.length).toBe(1);
+
+    const uploadButton = screen.getByRole("button", {name : "Upload"});
+    expect(uploadButton).toBeInTheDocument();
+  });
+});
