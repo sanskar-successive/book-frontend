@@ -6,12 +6,16 @@ import BookDetails from "../pages/bookDetails/BookDetails";
 import BulkUploadList from "../pages/bulkUpload/BulkUploadList";
 import BulkErrorDetail from "../pages/bulkErrorDetail/BulkErrorDetail";
 import UploadFile from "../components/uploadFile/UploadFile";
+import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Layout />
       <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<BookList />} />
         <Route path="/:bookId" element={<BookDetails />} />
         <Route path="/add-book" element={<AddBook />} />

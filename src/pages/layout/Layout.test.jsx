@@ -12,6 +12,8 @@ describe("Layout Page", () => {
       </BrowserRouter>
     );
 
+
+    
     expect(screen.queryByTestId("top-header"))
     expect(screen.queryByTestId("left-sidebar"))
   });
