@@ -4,8 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import AddBook from "./AddBook";
 import userEvent from "@testing-library/user-event";
 import { mockBook } from "../../mocks/mockBook";
-import { server } from "../../mocks/node";
-import { handlers } from "../../mocks/handlers";
 
 describe("Add Book component", () => {
   test("should renders Add Book Form", async () => {
@@ -19,29 +17,6 @@ describe("Add Book component", () => {
 
     const mainHeading = await screen.findByRole('heading',{name : "Add Book"});
     expect(mainHeading).toBeInTheDocument();
-
- 
-    // expect(form).toHaveFormValues(
-    //   {
-    //     title: mockBook.title,
-    //     coverImage: mockBook.coverImage,
-    //     category: mockBook.category,
-    //     authorName : mockBook.author.name,
-    //     authorAbout : mockBook.author.about,
-    //     rating: mockBook.rating,
-    //     price: mockBook.price,
-    //     publisher: mockBook.moreDetails.publisher,
-    //     firstPublished: mockBook.moreDetails.firstPublished,
-    //     seller: mockBook.moreDetails.seller,
-    //     language: mockBook.moreDetails.text_language,
-    //     description: mockBook.moreDetails.description,
-    //     fileSize: mockBook.moreDetails.fileSize,
-    //     pages: mockBook.moreDetails.pages,
-    //     verified: mockBook.moreDetails.verified,
-    //     edition: mockBook.moreDetails.edition,
-    //   }
-
-    // 
 
     const titleInput = await screen.findByLabelText(/title/i)
     expect(titleInput).toBeInTheDocument()
