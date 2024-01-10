@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
@@ -51,6 +51,7 @@ const Register = () => {
             <label htmlFor="password">Password : <input name='password' type="password" value={userDetails.password} onChange={handleInputChange} /></label>
             <label htmlFor="confirmPassword">Confirm Password : <input name='confirmPassword' type="password" value={userDetails.confirmPassword} onChange={handleInputChange} /></label>
             <button onClick={handleRegister} >Register</button>
+            <Link to={'/login'}>Login</Link>
         </div>
     )
 }

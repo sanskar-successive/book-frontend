@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios from '../../axiosConfig'
+// import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BookListItem from "../../components/bookListItem/BookListItem";
 import Pagination from "../../components/pagination/Pagination";
 import Sort from "../../components/sort/Sort";
@@ -17,7 +18,7 @@ const BookList = () => {
   const fetchApiResponse = async () => {
     try {
       const apiResponse = await axios.get(
-        `http://localhost:5000/api/search?${location.search.slice(1)}`
+        `http://localhost:5000/api/search${location.search}`
       );
       setBooks(apiResponse.data.books);
     } catch (error) {

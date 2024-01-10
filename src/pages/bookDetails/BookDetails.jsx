@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./BookDetails.css";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import { useParams } from "react-router-dom";
 
 const BookDetails = () => {
@@ -14,7 +14,7 @@ const BookDetails = () => {
       const apiResponse = await axios.get(
         `http://localhost:5000/api/books/${bookId}`
       );
-      setBook(apiResponse.data);
+      setBook(apiResponse.data.book);
     } catch (error) {
       console.log("some error occured", error);
     } finally {

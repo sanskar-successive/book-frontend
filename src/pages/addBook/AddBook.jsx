@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AddBook.css";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import axios from '../../axiosConfig'
 
 const categories = [
   "fiction",
@@ -108,8 +108,7 @@ const AddBook = () => {
       const apiResponse = await axios.get(
         `http://localhost:5000/api/books/${bookId}`
       );
-      console.log("api response", apiResponse.data);
-      setBookData({ ...apiResponse.data });
+      setBookData({ ...apiResponse.data.book });
     } catch (error) {
       console.error("Error fetching book data:", error);
     } finally {
@@ -123,15 +122,12 @@ const AddBook = () => {
     }
   }, []);
 
-
-  // const [form] = Form.useForm();
-
   const addBook = async () => {
-    const response = await axios.post(
+    const apiResponse = await axios.post(
       "http://localhost:5000/api/books",
       bookRaw
     );
-    console.log(response.data);
+    console.log(apiResponse.data.book);
   };
 
   if (loading) {

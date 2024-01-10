@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./BookListItem.css";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
-import axios from "axios";
+import axios from '../../axiosConfig';
 
 const BookListItem = ({ item }) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const BookListItem = ({ item }) => {
   };
 
   const deleteOk = async () => {
-    await axios.delete(`http://localhost:5000/api/books/${item._id}`);
+    const apiResponse = await axios.delete(`http://localhost:5000/api/books/${item._id}`);
     setShowPopUp(false);
     window.location.reload(); 
   };

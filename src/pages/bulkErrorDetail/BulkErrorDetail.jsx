@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axiosConfig";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,7 +15,8 @@ const BulkErrorDetail = () => {
       const apiResponse = await axios.get(
         `http://localhost:5000/api/bulk-uploads-errors/${session_id}`
       );
-      setBulkErrors(apiResponse.data);
+      console.log(apiResponse.data);
+      setBulkErrors(apiResponse.data.bulkUploadErrorDetail);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

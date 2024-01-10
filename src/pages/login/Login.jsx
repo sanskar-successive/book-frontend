@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -20,9 +20,9 @@ const Login = () => {
             const { data } = await axios.post("http://localhost:5000/users/login", loginDetails);
             console.log(data);
 
-            if(data.message === "user logged in successfully"){
-                localStorage.setItem("token", JSON.stringify(data.token))
-                navigate('/')
+            if(data.authorised){
+                localStorage.setItem("AUTH-TOKEN", data.token);
+                navigate('/', {replace:true})
             }
             setLoading(false);
 
@@ -42,6 +42,7 @@ const Login = () => {
             <label htmlFor="email">Email : <input name='email' type="email" value={loginDetails.email} onChange={handleInputChange} /></label>
             <label htmlFor="password">Password : <input name='password' type="password" value={loginDetails.password} onChange={handleInputChange} /></label>
             <button onClick={handleLogin} >Login</button>
+            <Link to={'/register'}  >Register</Link>
         </div>
     )
 }
