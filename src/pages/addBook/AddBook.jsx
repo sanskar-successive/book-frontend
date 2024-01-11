@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./AddBook.css";
 import { useParams } from "react-router-dom";
 import axios from '../../axiosConfig'
+import Layout from "../layout/Layout";
 
 const categories = [
   "fiction",
@@ -123,11 +124,15 @@ const AddBook = () => {
   }, []);
 
   const addBook = async () => {
-    const apiResponse = await axios.post(
-      "http://localhost:5000/api/books",
-      bookRaw
-    );
-    console.log(apiResponse.data.book);
+    try {
+      const apiResponse = await axios.post(
+        "http://localhost:5000/api/books",
+        bookRaw
+      );
+      console.log(apiResponse.data.book);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   if (loading) {

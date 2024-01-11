@@ -1,7 +1,7 @@
 import axios from '../../axiosConfig'
 // import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import BookListItem from "../../components/bookListItem/BookListItem";
 import Pagination from "../../components/pagination/Pagination";
 import Sort from "../../components/sort/Sort";
@@ -13,6 +13,8 @@ const BookList = () => {
   const [loading, setLoading] = useState(true);
   const [filterOpen, setFilterOpen] = useState(false);
 
+  const [errors, setErrors] = useState("");
+
   const location = useLocation();
 
   const fetchApiResponse = async () => {
@@ -23,6 +25,7 @@ const BookList = () => {
       setBooks(apiResponse.data.books);
     } catch (error) {
       console.error("Error fetching data:", error);
+      setErrors(error.message)
     } finally {
       setLoading(false);
     }
@@ -36,12 +39,17 @@ const BookList = () => {
     fetchApiResponse();
   }, [location.search]);
 
+  if(loading){
+    return <h2 style={{margin:"400px"}}>Loading...</h2>
+  }
+
+  if(errors){
+    return <h2 style={{margin:"400px"}}>Some error occured</h2>
+  }
+
   return (
     <div>
       <div style={{ marginLeft: "200px" }}>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
           <table>
             <thead>
               <Sort />
@@ -61,22 +69,21 @@ const BookList = () => {
             </thead>
 
             <tbody >
-              {books?.map((item,index) => {
-                    return (
-                      <tr key={index} >
-                        <td role="book-list-item" >
-                          <BookListItem item={item} />
-                        </td>
-                      </tr>
-                    );
-                  })}
+              {books?.map((item, index) => {
+                return (
+                  <tr key={index} >
+                    <td role="book-list-item" >
+                      <BookListItem item={item} />
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
-
+            <Pagination />
             <tfoot>
-              <Pagination />
+
             </tfoot>
           </table>
-        )}
       </div>
     </div>
   );

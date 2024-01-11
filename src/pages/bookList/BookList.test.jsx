@@ -1,27 +1,42 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, test } from "vitest";
-import { BrowserRouter } from "react-router-dom";
+import { describe, expect, test, vi } from "vitest";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import BookList from "./BookList";
 import { mockBookList } from "../../mocks/mockBookList";
+import userEvent from "@testing-library/user-event";
 
-describe("Bulk Upload List Page", () => {
-  test("should renders bulk upload list", async () => {
+describe("Book List Page", () => {
+  
+  test("should renders book list", async () => {
     render(
-      <BrowserRouter>
-        <BookList />
-      </BrowserRouter>
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<BookList />} />
+        </Routes>
+      </MemoryRouter>
     );
 
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: /loading/i})).toBeInTheDocument();
 
-    const table = await screen.findByRole('table')
-    expect(table).toBeInTheDocument()
+    const bookListItem = await screen.findAllByRole("book-list-item");
+    expect(bookListItem).toHaveLength(mockBookList.length)
 
-    const bookListItem = screen.queryAllByRole("book-list-item");
-    console.log(bookListItem);
-    expect(bookListItem)
+    const filterButton = screen.getByRole('button', {name : "Filters"});
+    await userEvent.click(filterButton);
+  });
 
-    expect(screen.queryByText(/loading/i)).toBeNull();
+  test("should renders error", async () => {
+    render(
+      <MemoryRouter initialEntries={["/?invalidQuery=invalid"]}>
+        <Routes>
+          <Route path="/" element={<BookList />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByRole('heading', {name: /loading/i})).toBeInTheDocument();
+    const errorText = await screen.findByRole('heading', {name : "Some error occured"});
+    expect(errorText).toBeInTheDocument();
   });
 });

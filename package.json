@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "sonarqube" : "node sonarqube-scanner.js"
+    "sonarqube": "node sonarqube-scanner.js"
   },
   "dependencies": {
     "axios": "^1.6.5",

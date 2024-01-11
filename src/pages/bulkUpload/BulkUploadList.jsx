@@ -1,5 +1,5 @@
 import axios from "../../axiosConfig";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import "./BulkUploadList.css";
@@ -7,7 +7,6 @@ import "./BulkUploadList.css";
 const BulkUploadList = () => {
   const [bulkUploads, setBulkUploads] = useState([]);
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(true);
 
   const handleViewBulkUploadErrors = (session_id) => {
@@ -31,9 +30,9 @@ const BulkUploadList = () => {
 
   };
 
-  useEffect(() => {
+  useEffect(()=>{
     fetchApiResponse();
-  }, []);
+  },[])
 
   if (loading) {
     return <h3>Loading...</h3>;
@@ -49,11 +48,9 @@ const BulkUploadList = () => {
         </thead>
 
         <tbody>
-          {bulkUploads.length === 0
-            ? "kuch nhi hai"
-            : bulkUploads?.map((item) => (
+          {bulkUploads?.map((item) => (
               <tr key={item._id} className="table-row">
-                <td role="record-details">
+                <td >
                   <div className="record-details">
                     <div>Records Processed: {item.recordsProcessed}</div>
                     <div>Errors: {item.totalErrors}</div>

@@ -37,7 +37,7 @@ describe("book list item component", () => {
   
 
     await userEvent.click(screen.getByRole("button", { name: "view" }));
-    expect(window.location.pathname).toBe(`/${mockBook._id}`);
+    expect(window.location.pathname).toBe(`/book/${mockBook._id}`);
   });
 
 

@@ -3,11 +3,36 @@ import "./BookDetails.css";
 import axios from "../../axiosConfig";
 import { useParams } from "react-router-dom";
 
+const initialBookDetails = {
+  title: "No data available",
+  coverImage: "No data available",
+  category: "No data available",
+  author: {
+    name: "No data available",
+    about: "No data available",
+  },
+  rating: 0,
+  price: 0,
+  moreDetails: {
+    publisher: "No data available",
+    firstPublished: new Date("1925-04-10"),
+    seller: "No data available",
+    text_language: "No data available",
+    description:"No data available",
+    fileSize: 0,
+    pages: 0,
+    verified: false,
+    edition: 1,
+  },
+};
+
+
 const BookDetails = () => {
   const { bookId } = useParams();
 
-  const [book, setBook] = useState();
+  const [book, setBook] = useState(initialBookDetails);
   const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState("")
 
   const fetchBookData = async () => {
     try {
@@ -16,7 +41,7 @@ const BookDetails = () => {
       );
       setBook(apiResponse.data.book);
     } catch (error) {
-      console.log("some error occured", error);
+      setErrors(error.message)
     } finally {
       setLoading(false);
     }
@@ -26,7 +51,11 @@ const BookDetails = () => {
     fetchBookData();
   }, [bookId]);
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <h2>Loading</h2>;
+
+  if(errors.length){
+    return <h2>not found</h2>
+  }
 
   return (
     <div className="book-details-container">

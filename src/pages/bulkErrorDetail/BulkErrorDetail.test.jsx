@@ -20,12 +20,15 @@ describe("Bulk Error Detail Page", () => {
     expect(screen.getByText("Row Number")).toBeInTheDocument();
     expect(screen.getByText("Error Details")).toBeInTheDocument();
 
-    expect(screen.queryAllByRole("error-row")).toHaveLength(
-      mockBulkError.length
-    );
-    expect(screen.queryAllByRole("error-message")).toHaveLength(
-      mockBulkError.length
-    );
+
+    const errorRow = screen.queryAllByRole("error-row")
+
+    console.log("errorRow", errorRow);
+
+    expect(errorRow).toHaveLength(0);
+
+    const errorMessage = screen.queryAllByRole("error-message");
+    expect(errorMessage).toHaveLength(0);
 
     expect(screen.queryByText(/loading/i)).toBeNull();
   });

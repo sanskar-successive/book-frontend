@@ -7,7 +7,11 @@ import { mockBookList } from "./mockBookList";
 export const handlers = [
   http.get(`http://localhost:5000/api/books/:bookId`, ({ params }) => {
     const { bookId } = params;
-    return HttpResponse.json(mockBook);
+
+    if(bookId==="validBookId")
+      return HttpResponse.json({book : mockBook});
+    else 
+      return HttpResponse.error()
   }),
 
   http.post(`http://localhost:5000/api/books`, async ({ request }) => {
@@ -21,13 +25,14 @@ export const handlers = [
   }),
 
   http.get(`http://localhost:5000/api/bulk-uploads-list`, ()=>{
-    return HttpResponse.json(mockBulkUploadList);
+    return HttpResponse.json({bulkUploads : mockBulkUploadList});
   }),
 
   http.get(`http://localhost:5000/api/search`, ({request})=>{
     const url = new URL(request.url);
     const query = url.searchParams
-    return HttpResponse.json(mockBookList);
+    if(query.has("invalidQuery")) return HttpResponse.error();
+    else return HttpResponse.json({books : mockBookList});
   }),
 
   http.post('http://localhost:5000/api/bulk-upload', async ({ request }) => {

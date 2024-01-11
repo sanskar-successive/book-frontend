@@ -3,7 +3,10 @@ import './Sidebar.css';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
-  const isAuth = localStorage.getItem("AUTH-TOKEN");
+  const handleLogout = ()=>{
+    localStorage.removeItem("AUTH-TOKEN");
+  }
+
   return (
     <aside className="left-sidebar">
       <nav>
@@ -12,6 +15,7 @@ const Sidebar = () => {
           <li><NavLink to={ '/add-book' }>Add Book</NavLink></li>
           <li><NavLink to={ '/upload-file' }>Upload File</NavLink></li>
           <li><NavLink to={ '/bulk-uploads' }>Bulk Uploads</NavLink></li>
+          <li><NavLink to={'/login'} onClick={handleLogout}>Logout</NavLink></li>
         </ul>
       </nav>
     </aside>

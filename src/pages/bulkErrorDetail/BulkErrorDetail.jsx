@@ -2,7 +2,7 @@ import axios from "../../axiosConfig";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import "./BulkErrorDetail.css"; // Import your CSS file
+import "./BulkErrorDetail.css"; 
 
 const BulkErrorDetail = () => {
   const { session_id } = useParams();

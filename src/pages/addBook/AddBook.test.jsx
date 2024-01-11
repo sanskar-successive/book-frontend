@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import AddBook from "./AddBook";
 import userEvent from "@testing-library/user-event";
 import { mockBook } from "../../mocks/mockBook";
@@ -8,14 +8,14 @@ import { mockBook } from "../../mocks/mockBook";
 describe("Add Book component", () => {
   test("should renders Add Book Form", async () => {
     render(
-      <BrowserRouter>
-        <AddBook />
-      </BrowserRouter>
+      <MemoryRouter initialEntries={['/add-book']}>
+        <Routes>
+          <Route exact path="/add-book" element={<AddBook />} />
+        </Routes>
+      </MemoryRouter>
     );
 
-    expect(screen.queryByText(/loading/i))
-
-    const mainHeading = await screen.findByRole('heading',{name : "Add Book"});
+    const mainHeading = await screen.findByRole('heading', { name: "Add Book" });
     expect(mainHeading).toBeInTheDocument();
 
     const titleInput = await screen.findByLabelText(/title/i)
@@ -24,52 +24,50 @@ describe("Add Book component", () => {
     const descriptionInput = await screen.findByLabelText(/description/i)
     expect(descriptionInput).toBeInTheDocument();
 
-    const categoryInput =  await screen.findByLabelText(/category/i)
+    const categoryInput = await screen.findByLabelText(/category/i)
     expect(categoryInput).toBeInTheDocument();
 
     const langauageInput = await screen.findByLabelText(/language/i)
     expect(langauageInput).toBeInTheDocument();
 
-    const priceInput =  await screen.findByLabelText(/price/i)
+    const priceInput = await screen.findByLabelText(/price/i)
     expect(priceInput).toBeInTheDocument();
 
-    const ratingInput =  await screen.findByLabelText(/rating/i)
+    const ratingInput = await screen.findByLabelText(/rating/i)
     expect(ratingInput).toBeInTheDocument();
 
-    const fileSizeInput =  await screen.findByLabelText(/file/i)
+    const fileSizeInput = await screen.findByLabelText(/file/i)
     expect(fileSizeInput).toBeInTheDocument();
 
-    const pageCountInput =  await screen.findByLabelText(/page/i)
+    const pageCountInput = await screen.findByLabelText(/page/i)
     expect(pageCountInput).toBeInTheDocument();
 
-    const authorNameInput =  await screen.findByLabelText("Author")
+    const authorNameInput = await screen.findByLabelText("Author")
     expect(authorNameInput).toBeInTheDocument();
 
-    const aboutAuthorInput =  await screen.findByLabelText(/about/i)
+    const aboutAuthorInput = await screen.findByLabelText(/about/i)
     expect(aboutAuthorInput).toBeInTheDocument();
 
-    const sellerInput =  await screen.findByLabelText(/seller/i)
+    const sellerInput = await screen.findByLabelText(/seller/i)
     expect(sellerInput).toBeInTheDocument();
 
-    const publisherInput =  await screen.findByLabelText(/publisher/i)
+    const publisherInput = await screen.findByLabelText(/publisher/i)
     expect(publisherInput).toBeInTheDocument();
 
-    const firstPublishedInput =  await screen.findByLabelText(/published/i)
+    const firstPublishedInput = await screen.findByLabelText(/published/i)
     expect(firstPublishedInput).toBeInTheDocument();
 
-    const verifiedInput =  await screen.findByLabelText(/verified/i)
+    const verifiedInput = await screen.findByLabelText(/verified/i)
     expect(verifiedInput).toBeInTheDocument();
 
-    const editionInput =  await screen.findByLabelText(/edition/i)
+    const editionInput = await screen.findByLabelText(/edition/i)
     expect(editionInput).toBeInTheDocument();
 
     const coverImageInput = await screen.findByLabelText(/cover/i)
     expect(coverImageInput).toBeInTheDocument();
 
-    const addBookButton = await screen.findByRole('button', {name : "Add Book"});
+    const addBookButton = await screen.findByRole('button', { name: "Add Book" });
     expect(addBookButton).toBeInTheDocument();
-
-    expect(screen.queryByText(/loading/i)).not.toBeInTheDocument()
 
 
     await userEvent.type(titleInput, mockBook.title);
