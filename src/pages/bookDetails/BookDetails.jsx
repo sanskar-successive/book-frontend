@@ -53,7 +53,7 @@ const BookDetails = () => {
 
   if (loading) return <h2>Loading</h2>;
 
-  if(errors.length){
+  if(errors){
     return <h2>not found</h2>
   }
 

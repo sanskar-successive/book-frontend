@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import './Sort.css'
 
@@ -57,4 +57,4 @@ const Sort = () => {
   );
 };
 
-export default Sort;
+export default memo(Sort);

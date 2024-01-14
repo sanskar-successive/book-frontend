@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { memo, useReducer } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import "./Filter.css";
 
@@ -220,4 +220,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default memo(Filter);

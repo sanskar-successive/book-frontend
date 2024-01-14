@@ -7,7 +7,7 @@ scanner(
     options: {
       "sonar.sources": "src/",
       "sonar.javascript.lcov.reportPaths" : "coverage/lcov.info",
-      "sonar.coverage.exclusions" : "**/*.test.*"
+      "sonar.coverage.exclusions" : "**/*.test.jsx*"
     },
   },
   () => process.exit()

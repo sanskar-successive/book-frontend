@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import "./Pagination.css";
 
@@ -93,4 +93,4 @@ const Pagination = ({ total = 100 }) => {
     </div>
   );
 };
-export default Pagination;
+export default memo(Pagination);

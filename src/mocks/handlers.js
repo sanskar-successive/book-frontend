@@ -19,6 +19,18 @@ export const handlers = [
     return HttpResponse.json(newMockBook);
   }),
 
+  http.patch(`http://localhost:5000/api/books/:bookId`, async ({ params }) => {
+    const {bookId} = params;
+    if(bookId==="validBookId"){
+      const newMockBook = await request.json();
+      return HttpResponse.json(newMockBook);
+    }
+    else{
+      return HttpResponse.error();
+    }
+    
+  }),
+
   http.get("http://localhost:5000/api/bulk-uploads-errors/:session_id", ({params})=>{
     const {session_id} = params;
     return HttpResponse.json(mockBulkError)

@@ -8,7 +8,7 @@ const Layout = () => {
     <div>
       <Header data-testid="top-header" />
       <Sidebar data-testid="left-sidebar"  />
-      <Outlet/>
+      <Outlet data-testid="outlet" />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import axios from "../../axiosConfig";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import "./BulkUploadList.css";

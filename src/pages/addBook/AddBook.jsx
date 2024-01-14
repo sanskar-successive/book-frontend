@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./AddBook.css";
 import { useParams } from "react-router-dom";
 import axios from '../../axiosConfig'
-import Layout from "../layout/Layout";
+import { transformFormData } from "../../helpers/tranformFormData";
 
 const categories = [
   "fiction",
@@ -22,7 +22,7 @@ const categories = [
 const languages = ["english", "hindi", "sanskrit", "telugu", "bengali"];
 
 const AddBook = () => {
-  let bookRaw = {
+  const initialiseBookData = {
     title: "",
     coverImage: "",
     category: "",
@@ -30,8 +30,8 @@ const AddBook = () => {
       name: "",
       about: "",
     },
-    rating: "",
-    price: "",
+    rating: 0,
+    price: 0,
     moreDetails: {
       text_language: "",
       publisher: "",
@@ -49,10 +49,9 @@ const AddBook = () => {
   console.log(bookId);
 
   let initialLoading = false;
-
   if (bookId) initialLoading = true;
 
-  const [bookData, setBookData] = useState(bookRaw);
+  const [bookData, setBookData] = useState(initialiseBookData);
   const [loading, setLoading] = useState(initialLoading);
 
   const handleSubmit = (e) => {
@@ -60,49 +59,13 @@ const AddBook = () => {
     const form = e.target;
     const formData = new FormData(form);
 
-    const formJson = Object.fromEntries(formData.entries());
-    console.log("formJson", formJson);
+    const formDataJson = transformFormData(Object.fromEntries(formData.entries()));
+    console.log("formJson", formDataJson);
 
-    const {
-      title,
-      category,
-      authorName,
-      aboutAuthor,
-      price,
-      rating,
-      description,
-      fileSize,
-      language,
-      publisher,
-      firstPublished,
-      seller,
-      verified,
-      pages,
-      coverImage,
-      edition,
-    } = formJson;
-
-    bookRaw.title = title;
-    bookRaw.category = category;
-    bookRaw.author.name = authorName;
-    bookRaw.author.about = aboutAuthor;
-    bookRaw.price = Number(price);
-    bookRaw.rating = Number(rating);
-    bookRaw.moreDetails.description = description;
-    bookRaw.moreDetails.fileSize = Number(fileSize);
-    bookRaw.moreDetails.text_language = language;
-    bookRaw.moreDetails.publisher = publisher;
-    bookRaw.moreDetails.firstPublished = Date(firstPublished);
-    bookRaw.moreDetails.seller = seller;
-    bookRaw.moreDetails.verified = Boolean(verified);
-    bookRaw.moreDetails.pages = pages;
-    bookRaw.moreDetails.edition = Number(edition);
-    bookRaw.coverImage = coverImage;
-
-    console.log("bookRaw", bookRaw);
-
-    addBook();
+    addBook(formDataJson);
   };
+
+  const [errors, setErrors] = useState("");
 
   const fetchBookData = async () => {
     try {
@@ -112,6 +75,7 @@ const AddBook = () => {
       setBookData({ ...apiResponse.data.book });
     } catch (error) {
       console.error("Error fetching book data:", error);
+      setErrors(error.message)
     } finally {
       setLoading(false);
     }
@@ -121,17 +85,29 @@ const AddBook = () => {
     if (bookId) {
       fetchBookData();
     }
-  }, []);
+  }, [bookId]);
 
-  const addBook = async () => {
+  const addBook = async (formDataJson) => {
     try {
-      const apiResponse = await axios.post(
-        "http://localhost:5000/api/books",
-        bookRaw
-      );
+      let apiResponse;
+      if (!bookId) {
+
+        apiResponse = await axios.post(
+          "http://localhost:5000/api/books",
+          formDataJson
+        );
+
+      }
+      else {
+        apiResponse = await axios.patch(
+          `http://localhost:5000/api/books/${bookId}`,
+          formDataJson
+        );
+      }
       console.log(apiResponse.data.book);
     } catch (error) {
       console.log(error.message);
+      setErrors(error.message)
     }
   };
 
@@ -139,11 +115,15 @@ const AddBook = () => {
     return <h3>Loading...</h3>;
   }
 
+  if (errors) {
+    return <h3>some error occured</h3>
+  }
+
   return (
     <div className="add-book-container">
       <h2>Add Book</h2>
 
-      <form className="add-book-form" method="post" onSubmit={handleSubmit}>
+      <form className="add-book-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
@@ -159,7 +139,7 @@ const AddBook = () => {
           <label htmlFor="description">Description</label>
           <textarea
             id="description"
-            name="description"
+            name="moreDetails.description"
             rows="8"
             maxLength={500}
             placeholder="Enter a brief description"
@@ -184,7 +164,7 @@ const AddBook = () => {
           <label htmlFor="language">Language</label>
           <select
             id="language"
-            name="language"
+            name="moreDetails.language"
             defaultValue={bookData.moreDetails.language}
           >
             {languages.map((item) => {
@@ -220,7 +200,7 @@ const AddBook = () => {
             readOnly
             type="number"
             id="fileSize"
-            name="fileSize"
+            name="moreDetails.fileSize"
             defaultValue={bookData.moreDetails.fileSize}
           />
         </div>
@@ -231,7 +211,7 @@ const AddBook = () => {
             readOnly
             type="number"
             id="pages"
-            name="pages"
+            name="moreDetails.pages"
             defaultValue={bookData.moreDetails.pages}
           />
         </div>
@@ -242,7 +222,7 @@ const AddBook = () => {
             maxLength={50}
             type="text"
             id="authorName"
-            name="authorName"
+            name="author.name"
             defaultValue={bookData.author.name}
           />
         </div>
@@ -251,7 +231,7 @@ const AddBook = () => {
           <label htmlFor="aboutAuthor">About Author</label>
           <textarea
             id="aboutAuthor"
-            name="aboutAuthor"
+            name="author.about"
             rows="5"
             maxLength={100}
             placeholder="Tell us about the author"
@@ -265,7 +245,7 @@ const AddBook = () => {
             maxLength={50}
             type="text"
             id="seller"
-            name="seller"
+            name="moreDetails.seller"
             defaultValue={bookData.moreDetails.seller}
           />
         </div>
@@ -276,7 +256,7 @@ const AddBook = () => {
             maxLength={50}
             type="text"
             id="publisher"
-            name="publisher"
+            name="moreDetails.publisher"
             defaultValue={bookData.moreDetails.publisher}
           />
         </div>
@@ -286,7 +266,7 @@ const AddBook = () => {
           <input
             type="date"
             id="firstPublished"
-            name="firstPublished"
+            name="moreDetails.firstPublished"
             defaultValue={bookData.moreDetails.firstPublished}
           />
         </div>
@@ -296,7 +276,7 @@ const AddBook = () => {
           <input
             type="checkbox"
             id="verified"
-            name="verified"
+            name="moreDetails.verified"
             defaultChecked={bookData.moreDetails.verified}
           />
         </div>
@@ -306,7 +286,7 @@ const AddBook = () => {
           <input
             type="number"
             id="edition"
-            name="edition"
+            name="moreDetails.edition"
             defaultValue={bookData.moreDetails.edition}
           />
         </div>

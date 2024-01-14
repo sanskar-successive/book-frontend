@@ -20,7 +20,6 @@ const Search = () => {
 
   const handleSearch = async () => {
     if (searchString.trim().length) {
-      
 
       for(let i=0;i<queryKeys.length;i++){
         queryParams.delete(queryKeys[i]);
@@ -40,6 +39,7 @@ const Search = () => {
         placeholder="Search..."
         value={searchString}
         onChange={handleSearchString}
+        onMouseEnter={handleSearch}
       />
       <button className="search-button" onClick={handleSearch}>
         <FaSearch className="search-icon" />

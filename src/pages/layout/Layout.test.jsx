@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import Layout from "./Layout";
 
 describe("Layout Page", () => {
@@ -11,10 +11,9 @@ describe("Layout Page", () => {
         <Layout />
       </BrowserRouter>
     );
-
-
     
-    expect(screen.queryByTestId("top-header"))
-    expect(screen.queryByTestId("left-sidebar"))
+    expect(screen.queryByTestId("top-header")).toBeDefined();
+    expect(screen.queryByTestId("left-sidebar")).toBeDefined();
   });
+
 });

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import "./BookListItem.css";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import axios from '../../axiosConfig';
 
@@ -22,7 +22,7 @@ const BookListItem = ({ item }) => {
   };
 
   const deleteOk = async () => {
-    const apiResponse = await axios.delete(`http://localhost:5000/api/books/${item._id}`);
+    await axios.delete(`http://localhost:5000/api/books/${item._id}`);
     setShowPopUp(false);
     window.location.reload();
   };
@@ -32,13 +32,14 @@ const BookListItem = ({ item }) => {
   };
 
   return (
-    <>
+    
       <div className="book-list-item">
         <div className="book-details">
           <img
             src={item.coverImage}
             alt={`${item.title} cover`}
             className="book-cover"
+            loading="lazy" 
           />
 
           <div className="book-info">
@@ -69,8 +70,8 @@ const BookListItem = ({ item }) => {
           ) : null}
         </div>
       </div>
-    </>
+    
   );
 };
 
-export default BookListItem;
+export default memo(BookListItem);

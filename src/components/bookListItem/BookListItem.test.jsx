@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import BookListItem from "./BookListItem";
 import { describe, expect, test } from "vitest";
 import { mockBook } from "../../mocks/mockBook";
@@ -11,9 +11,9 @@ describe("book list item component", () => {
   test("should render book list item", () => {
 
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <BookListItem item={mockBook} />
-      </BrowserRouter>
+      </MemoryRouter>
     );
   
     expect(screen.getByAltText(`${mockBook.title} cover`)).toBeInTheDocument();
@@ -56,9 +56,9 @@ describe("book list item component", () => {
   test("displays deletion popup when delete button is clicked", async () => {
 
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <BookListItem item={mockBook} />
-      </BrowserRouter>
+      </MemoryRouter>
     );
   
     await userEvent.click(screen.getByRole("button", { name: 'delete' }));
@@ -70,9 +70,9 @@ describe("book list item component", () => {
   test('cancels deletion when "Cancel" button is clicked on deletion popup', async () => {
 
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <BookListItem item={mockBook} />
-      </BrowserRouter>
+      </MemoryRouter>
     );
   
     await userEvent.click(screen.queryByRole("button", { name: "Cancel" }));
@@ -81,5 +81,4 @@ describe("book list item component", () => {
     expect(screen.queryByRole("button", { name: "Yes" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Cancel" })).not.toBeInTheDocument();
   });
-
 });
