@@ -6,6 +6,7 @@ import Pagination from "../../components/pagination/Pagination";
 import Sort from "../../components/sort/Sort";
 import { FaFilter } from "react-icons/fa";
 import Filter from "../../components/filter/Filter";
+import ErrorPage from '../errorPage/ErrorPage';
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -46,7 +47,7 @@ const BookList = () => {
   }
 
   if (errors) {
-    return <h2 style={{ margin: "400px" }}>Some error occured</h2>
+    return <ErrorPage errorMessage={errors} />
   }
 
   return (

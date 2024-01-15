@@ -6,6 +6,7 @@ import axios from '../../axiosConfig'
 import bookSchema from './bookSchema';
 import { categories } from '../../helpers/categories';
 import { languages } from '../../helpers/languages';
+import ErrorPage from '../errorPage/ErrorPage';
 
 
 
@@ -102,7 +103,7 @@ const AddBook2 = () => {
     }
 
     if (errors) {
-        return <h3>some error occured</h3>
+        return <ErrorPage errorMessage={errors} />
     }
 
     return (

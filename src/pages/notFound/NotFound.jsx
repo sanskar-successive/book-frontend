@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './NotFound.css';
 
 const NotFound = () => {
-  return (
-    <h3 style={{marginLeft:"500px", marginTop:"500px"}}>Not found</h3>
-  )
-}
-export default NotFound
+    return (
+        <div className="not-found-container">
+            <h1>404 - Not Found</h1>
+        </div>
+    );
+};
+
+export default NotFound;

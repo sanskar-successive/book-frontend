@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./BookDetails.css";
 import axios from "../../axiosConfig";
 import { useParams } from "react-router-dom";
+import ErrorPage from "../errorPage/ErrorPage";
 
 const initialBookDetails = {
   title: "No data available",
@@ -54,7 +55,7 @@ const BookDetails = () => {
   if (loading) return <h2>Loading</h2>;
 
   if(errors){
-    return <h2>not found</h2>
+    return <ErrorPage errorMessage={errors} />
   }
 
   return (

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./UploadFile.css";
 import axios from "../../axiosConfig";
+import ErrorPage from "../../pages/errorPage/ErrorPage";
 
 const UploadFile = () => {
   const [file, setFile] = useState(null);
+  const [errors, setErrors] = useState("");
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -22,8 +24,13 @@ const UploadFile = () => {
       console.log("File uploaded successfully.");
     } catch (error) {
       console.error("Error uploading file:", error);
+      setErrors(error.message)
     }
   };
+
+  if(errors){
+    return <ErrorPage errorMessage={errors} />
+  }
 
   return (
     <div className="upload-file-container">

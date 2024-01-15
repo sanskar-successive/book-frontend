@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import "./BulkUploadList.css";
+import ErrorPage from "../errorPage/ErrorPage";
 
 const BulkUploadList = () => {
   const [bulkUploads, setBulkUploads] = useState([]);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState("");
 
   const handleViewBulkUploadErrors = (session_id) => {
     navigate(`/bulk-uploads/${session_id}`);
@@ -23,6 +25,7 @@ const BulkUploadList = () => {
 
     } catch (error) {
       console.log("some error in fetching bulk upoload details", error);
+      setErrors(error.message)
     }
     finally {
       setLoading(false);
@@ -36,6 +39,10 @@ const BulkUploadList = () => {
 
   if (loading) {
     return <h3>Loading...</h3>;
+  }
+
+  if(errors){
+    return <ErrorPage errorMessage={errors} />
   }
 
   return (
