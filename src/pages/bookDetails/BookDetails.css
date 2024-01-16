@@ -1,0 +1,31 @@
+/* BookDetails.css */
+
+.book-details-container {
+    display: flex;
+    align-items: center;
+    margin-left: 220px;
+    margin-right: 20px;
+  }
+  
+  .book-cover {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .book-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .book-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .book-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  

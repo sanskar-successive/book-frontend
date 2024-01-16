@@ -1,0 +1,35 @@
+
+/* .search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-top: 10px; 
+  border: 1px solid black;
+} */
+
+.search-input {
+  border: 1px solid #ddd; 
+  border-radius: 20px;
+  outline: none;
+  font-size: 20px;
+  width: 500px;
+  height: 25px;
+  margin-right: 3px;
+}
+
+.search-button {
+  border: 1px solid black;
+  background: #7c7c7c; 
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.search-button:hover {
+  background: #0e0d0d; 
+}
+
+.search-icon {
+  color: white;
+  font-size: 20px;
+}

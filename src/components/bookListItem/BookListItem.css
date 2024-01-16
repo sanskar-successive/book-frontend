@@ -1,0 +1,96 @@
+/* BookListItem.css */
+
+.book-list-item {
+  display: flex;
+  width: 1600px;
+  height: 150px; /* Fixed height */
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.book-details {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  padding: 10px;
+}
+
+.book-cover {
+  width: 80px;
+  height: 100%; /* Cover the full height */
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.book-info {
+  padding: 0 10px;
+}
+
+h3 {
+  margin: 0; /* Remove default margin for the title */
+  white-space: nowrap; /* Ensure title stays in one line */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis for overflow */
+}
+
+.book-info p {
+  margin: 5px 0; /* Reduced space between items */
+}
+
+.book-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  width: 30%;
+}
+
+.action-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.action-icon {
+  color: #3498db;
+  font-size: 20px;
+}
+
+.action-icon:hover {
+  color: #2980b9;
+}
+
+.deletion-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-align: center;
+}
+
+.deletion-popup p {
+  margin-bottom: 20px;
+}
+
+.deletion-popup button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.deletion-popup button:first-child {
+  background-color: #dc3545; /* Red color for "Yes" button */
+  color: white;
+}
+
+.deletion-popup button:last-child {
+  background-color: #007bff; /* Blue color for "Cancel" button */
+  color: white;
+}
+

@@ -1,0 +1,40 @@
+.sortContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .sortLabel {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  
+  .sortOptions {
+    display: flex;
+    gap: 0; /* No margin between buttons */
+  }
+  
+  .sortButtonContainer {
+    flex-grow: 1;
+  }
+  
+  .sortButton {
+    background: #f0f0f0;
+    color: #333;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 20px;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+  }
+  
+  .sortButton:hover {
+    background: #e6e6e6;
+  }
+  
+  .sortButton.active {
+    background: #ddd;
+    color: #333;
+  }
+  
