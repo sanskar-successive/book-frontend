@@ -6,6 +6,7 @@ import ErrorPage from "../../pages/errorPage/ErrorPage";
 const UploadFile = () => {
   const [file, setFile] = useState(null);
   const [errors, setErrors] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -21,6 +22,7 @@ const UploadFile = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      setMessage("File uploading started")
       console.log("File uploaded successfully.");
     } catch (error) {
       console.error("Error uploading file:", error);
@@ -28,7 +30,7 @@ const UploadFile = () => {
     }
   };
 
-  if(errors){
+  if (errors) {
     return <ErrorPage errorMessage={errors} />
   }
 
@@ -41,6 +43,7 @@ const UploadFile = () => {
       <button className="upload-button" onClick={handleFileUpload}>
         Upload
       </button>
+      {message.length > 0 ? <p>{message}</p> : null}
     </div>
   );
 };
