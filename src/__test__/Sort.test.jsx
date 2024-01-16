@@ -1,7 +1,7 @@
 import { describe, it, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import Sort from "./Sort";
+import Sort from "../components/sort/Sort";
 import userEvent from "@testing-library/user-event";
 
 const sortOptions = [
@@ -27,6 +27,5 @@ describe("Sort component", () => {
         await userEvent.click(sortbuttons[i])
         expect(window.location.hash.includes(sortbuttons[i]))
     }
-
   });
 });

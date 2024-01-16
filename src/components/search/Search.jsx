@@ -24,7 +24,6 @@ const Search = () => {
       for(let i=0;i<queryKeys.length;i++){
         queryParams.delete(queryKeys[i]);
       }
-
       queryParams.set("search", searchString);
       setQueryParams(queryParams);
     }

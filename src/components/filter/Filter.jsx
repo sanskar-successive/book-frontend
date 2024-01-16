@@ -212,7 +212,6 @@ const Filter = () => {
           </label>
         ))}
       </div>
-
       <button className="filterButton" onClick={handleFilters}>
         Apply
       </button>

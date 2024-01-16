@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test} from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import BookList from "./BookList";
-import { mockBookList } from "../../mocks/mockBookList";
+import BookList from "../pages/bookList/BookList";
+import { mockBookList } from "../mocks/mockBookList";
 import userEvent from "@testing-library/user-event";
 
 describe("Book List Page", () => {
@@ -18,7 +18,6 @@ describe("Book List Page", () => {
     );
 
     expect(screen.getByRole('heading', {name: /loading/i})).toBeInTheDocument();
-
     const bookListItem = await screen.findAllByRole("book-list-item");
     expect(bookListItem).toHaveLength(mockBookList.length)
 
@@ -36,7 +35,7 @@ describe("Book List Page", () => {
     );
 
     expect(screen.getByRole('heading', {name: /loading/i})).toBeInTheDocument();
-    const errorText = await screen.findByRole('heading', {name : "Some error occured"});
+    const errorText = await screen.findByRole('heading', {name : "Oops! Something went wrong"});
     expect(errorText).toBeInTheDocument();
   });
 });

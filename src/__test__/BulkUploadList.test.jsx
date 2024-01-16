@@ -1,9 +1,9 @@
 import React from "react";
-import { getRoles, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
-import BulkUploadList from "./BulkUploadList";
-import { mockBulkUploadList } from "../../mocks/mockBulkUploadList";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import BulkUploadList from "../pages/bulkUpload/BulkUploadList";
+import { mockBulkUploadList } from "../mocks/mockBulkUploadList";
 
 describe("Bulk Upload List Page", () => {
   test("should renders bulk upload list", async () => {
@@ -14,7 +14,6 @@ describe("Bulk Upload List Page", () => {
         </Routes>
       </MemoryRouter>
     );
-
     const loadingText = screen.getByRole('heading', {name: /loading/i});
     expect(loadingText).toBeInTheDocument();
 

@@ -13,7 +13,6 @@ const sortOptions = [
 const Sort = () => {
   const [sortBy, setSortBy] = useState("newest");
   const location = useLocation();
-
   const [queryParams, setQueryParams] = useSearchParams(location.search);
 
   console.log(queryParams.toString());

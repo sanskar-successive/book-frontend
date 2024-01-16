@@ -6,7 +6,6 @@ const Sidebar = () => {
   const handleLogout = ()=>{
     localStorage.removeItem("AUTH-TOKEN");
   }
-
   return (
     <aside className="left-sidebar">
       <nav>

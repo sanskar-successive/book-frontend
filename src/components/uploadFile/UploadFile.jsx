@@ -11,7 +11,6 @@ const UploadFile = () => {
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
-
   const handleFileUpload = async () => {
     const formData = new FormData();
     formData.append("file", file);

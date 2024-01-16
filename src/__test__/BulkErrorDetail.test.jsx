@@ -2,8 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 import { BrowserRouter } from "react-router-dom";
-import BulkErrorDetail from "./BulkErrorDetail";
-import { mockBulkError } from "../../mocks/mockBulkError";
+import BulkErrorDetail from "../pages/bulkErrorDetail/BulkErrorDetail";
 
 describe("Bulk Error Detail Page", () => {
   test("should renders bulk error details", async () => {
@@ -14,12 +13,11 @@ describe("Bulk Error Detail Page", () => {
     );
 
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
-
+    
     await screen.findByText("Row Number");
 
     expect(screen.getByText("Row Number")).toBeInTheDocument();
     expect(screen.getByText("Error Details")).toBeInTheDocument();
-
 
     const errorRow = screen.queryAllByRole("error-row")
 

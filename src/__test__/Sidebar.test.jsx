@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 import { BrowserRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
-import Sidebar from "./Sidebar";
+import Sidebar from "../components/sidebar/Sidebar";
 
 describe("Sidebar Component", () => {
   test("renders Sidebar with navigation links", () => {
@@ -11,12 +11,10 @@ describe("Sidebar Component", () => {
         <Sidebar />
       </BrowserRouter>
     );
-
     const bookListLink = screen.getByRole("link", {
       name: "Book List",
     });
     expect(bookListLink).toBeInTheDocument();
-
     const addBookLink = screen.getByRole("link", {
       name: "Add Book",
     });

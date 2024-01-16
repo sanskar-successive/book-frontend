@@ -62,4 +62,13 @@ export const handlers = [
     return HttpResponse.json("file uploaded")
   }),
 
+  http.post("http://localhost:5000/users/login", async ({request})=>{
+    const user = await request.json();
+    return HttpResponse.json(user);
+  }),
+
+  http.post("http://localhost:5000/users", async ({request})=>{
+    const user = await request.json();
+    return HttpResponse.json(user);
+  })
 ];

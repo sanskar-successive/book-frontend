@@ -16,7 +16,6 @@ const BulkUploadList = () => {
   };
 
   const fetchApiResponse = async () => {
-
     try {
       const apiResponse = await axios.get(
         `http://localhost:5000/api/bulk-uploads-list`

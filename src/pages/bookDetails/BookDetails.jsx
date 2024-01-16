@@ -27,10 +27,8 @@ const initialBookDetails = {
   },
 };
 
-
 const BookDetails = () => {
   const { bookId } = useParams();
-
   const [book, setBook] = useState(initialBookDetails);
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState("")

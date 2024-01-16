@@ -15,7 +15,6 @@ const Pagination = ({ total = 100 }) => {
   };
 
   const limitOptions = [10, 20, 50];
-
   const skip = (currentPage - 1) * limit;
 
   useEffect(() => {

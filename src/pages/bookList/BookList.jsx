@@ -32,7 +32,6 @@ const BookList = () => {
     }
   }, [location.search]);
 
-
   const toggleFilter = () => {
     setFilterOpen(!filterOpen);
   };

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import { useFormik } from 'formik';
 import { loginSchema, registerSchema } from './loginSchema';
-import ErrorPage from '../errorPage/ErrorPage';
 
 const initialRegisterValues = {
     firstName: "",
@@ -23,7 +22,6 @@ const initialLoginValues = {
 }
 
 const Login = () => {
-
 
     const [account, setAccount] = useState("login");
     const navigate = useNavigate();
@@ -82,7 +80,7 @@ const Login = () => {
                     <form onSubmit={loginFormik.handleSubmit}>
 
                         <div className="form-group">
-                            <label className="form-label" htmlFor="email"> Email :</label>
+                            <label className="form-label" htmlFor="email">Enter Email :</label>
                             <input
                                 className="form-input"
                                 name="email"
@@ -99,9 +97,10 @@ const Login = () => {
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label" htmlFor="password"> Password :  </label>
+                            <label className="form-label" htmlFor="password">Enter Password :  </label>
                             <input
                                 className="form-input"
+                                id="password"
                                 name="password"
                                 type="password"
                                 onChange={loginFormik.handleChange}
@@ -117,7 +116,7 @@ const Login = () => {
                         {errors.length ? <p>Login Failed! Invalid email or password</p> : null}
                         <button className="submit-button" type="submit">Login</button>
                     </form>
-                    <button className="submit-button" onClick={() => setAccount("register")}>Register</button>
+                    <button className="submit-button" onClick={() => setAccount("register")}>Register User</button>
                 </div>
             ) : (
                 <div className="auth-form">
@@ -228,5 +227,4 @@ const Login = () => {
         </div>
     );
 }
-
 export default Login;

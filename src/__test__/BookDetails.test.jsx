@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import BookDetails from "./BookDetails";
+import BookDetails from "../pages/bookDetails/BookDetails";
 import { describe, test, expect } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { mockBook } from "../../mocks/mockBook";
 
 describe("Book Details component", () => {
   test("should render error", async () => {
@@ -17,7 +16,7 @@ describe("Book Details component", () => {
     const loadingText = screen.getByRole('heading', {name: /loading/i});
     expect(loadingText).toBeInTheDocument();
 
-    const errorText = await screen.findByRole('heading', {name : "not found"});
+    const errorText = await screen.findByRole('heading', {name : "Oops! Something went wrong"});
     expect(errorText).toBeInTheDocument();
   });
 
@@ -32,7 +31,6 @@ describe("Book Details component", () => {
 
     const loadingText = screen.getByRole('heading', {name: /loading/i});
     expect(loadingText).toBeInTheDocument();
-
 
     const bookCoverImage = await screen.findByAltText(/cover/i);
     expect(bookCoverImage).toBeInTheDocument()

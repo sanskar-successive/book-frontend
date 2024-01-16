@@ -3,6 +3,7 @@ import "./Header.css";
 import Search from "../search/Search";
 
 const Header = () => {
+  
   return (
     <header role="header" className="sticky-header">
       <div className="header-content">

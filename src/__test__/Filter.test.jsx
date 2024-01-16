@@ -1,7 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { describe, expect, test } from "vitest";
-import Filter from "./Filter";
+import Filter from "../components/filter/Filter";
 import userEvent from "@testing-library/user-event";
 
 const categories = [
@@ -66,7 +66,6 @@ describe("Filter component", () => {
 
     const applyFilterButton = screen.getByRole('button');
     expect(applyFilterButton).toBeInTheDocument();
-
     await userEvent.click(applyFilterButton);
     
     expect(window.location.search.includes("price.from"))
@@ -74,6 +73,5 @@ describe("Filter component", () => {
     expect(window.location.search.includes("rating"))
     expect(window.location.search.includes("category"))
     expect(window.location.search.includes("langauage"))
-
   });
 });

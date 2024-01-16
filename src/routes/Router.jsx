@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../pages/layout/Layout";
 import BookList from "../pages/bookList/BookList";
-import AddBook from "../pages/addBook/AddBook";
 import BookDetails from "../pages/bookDetails/BookDetails";
 import BulkUploadList from "../pages/bulkUpload/BulkUploadList";
 import BulkErrorDetail from "../pages/bulkErrorDetail/BulkErrorDetail";

@@ -70,7 +70,6 @@ const BookListItem = ({ item }) => {
           ) : null}
         </div>
       </div>
-    
   );
 };
 

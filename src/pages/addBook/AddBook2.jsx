@@ -139,7 +139,7 @@ const AddBook2 = () => {
                     >
                         <option value="">Select Category</option>
                         {categories.map((item) => {
-                            return <option value={item}>{item}</option>;
+                            return <option key={item} value={item}>{item}</option>;
                         })}
 
                     </select>
@@ -215,7 +215,6 @@ const AddBook2 = () => {
                 </div>
 
                 <div className="form-group">
-
                     <label className="form-label" htmlFor="moreDetails.publisher">Publisher:</label>
                     <input
                         className="form-input"
@@ -280,7 +279,7 @@ const AddBook2 = () => {
                     >
                         <option value="">Select Language</option>
                         {languages.map((item) => {
-                            return <option value={item}>{item}</option>;
+                            return <option key={item} value={item}>{item}</option>;
                         })}
                     </select>
                     {formik.touched.moreDetails?.text_language && formik.errors.moreDetails?.text_language && (
@@ -381,7 +380,7 @@ const AddBook2 = () => {
                 </div>
 
 
-                <button className="submit-button" type="submit">Submit</button>
+                <button className="submit-button" type="submit">Add Book</button>
             </form>
         </div>
     );

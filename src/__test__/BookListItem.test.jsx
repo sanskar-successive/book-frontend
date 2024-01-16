@@ -1,15 +1,14 @@
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import BookListItem from "./BookListItem";
+import BookListItem from "../components/bookListItem/BookListItem";
 import { describe, expect, test } from "vitest";
-import { mockBook } from "../../mocks/mockBook";
+import { mockBook } from "../mocks/mockBook";
 import userEvent from "@testing-library/user-event";
 
 
 describe("book list item component", () => {
 
   test("should render book list item", () => {
-
     render(
       <MemoryRouter>
         <BookListItem item={mockBook} />
@@ -28,13 +27,11 @@ describe("book list item component", () => {
   });
 
   test("navigates to view page when view button is clicked", async () => {
-
     render(
       <BrowserRouter>
         <BookListItem item={mockBook} />
       </BrowserRouter>
     );
-  
 
     await userEvent.click(screen.getByRole("button", { name: "view" }));
     expect(window.location.pathname).toBe(`/book/${mockBook._id}`);
@@ -42,7 +39,6 @@ describe("book list item component", () => {
 
 
   test("navigates to edit page when view button is clicked", async () => {
-
     render(
       <BrowserRouter>
         <BookListItem item={mockBook} />
